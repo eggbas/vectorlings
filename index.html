@@ -204,7 +204,7 @@
                 };
                 await ethereum.request({method: 'eth_sendTransaction', params: [transactionParameters]});
                 console.log('Transaction successful');
-                alert('Purchased ' + batch + ' eggs successfully');
+                if (batch = 1) {alert('Purchased 1 egg successfully.');} else {alert('Purchased ' + batch + ' eggs successfully.');}
             } catch (error) {
                 console.error('Error executing batch:', error);
                 alert('Error: ' + error);
@@ -256,10 +256,10 @@
                 await ethereum.request({ method: 'eth_requestAccounts' });
                 web3.eth.defaultAccount = (await web3.eth.getAccounts())[0];
                 console.log('Wallet connected');
-                alert('Wallet connected successfully');
+                alert('Wallet connected successfully.');
             } catch (error) {
                 console.error('User denied account access');
-                alert('Error: User denied account access');
+                alert('Error: User denied account access.');
             }
         } else {
             console.error('No Ethereum-compatible browser extension detected');
