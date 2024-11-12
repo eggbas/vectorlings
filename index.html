@@ -63,13 +63,6 @@
             border-radius: 5px;
             margin-bottom: 10px;
         }
-        .negative {
-            background-color: #333333;
-            color: #ee0000;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.5.2/web3.min.js"></script>
 </head>
@@ -197,8 +190,7 @@
     async function buy() {
         const batch = parseInt(document.getElementById('batch').value);
         if (batch > pop && batch > 1) {
-            messageBox.className = "negative";
-            messageBox.innerText = "Error:\namount exceeds population";
+            alert('Error: amount exceeds population');
             return;
         }
         if (typeof window.ethereum !== 'undefined') {
