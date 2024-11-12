@@ -190,7 +190,7 @@
     async function buy() {
         const batch = parseInt(document.getElementById('batch').value);
         if (batch > pop && batch > 1) {
-            alert('Error: amount exceeds population');
+            alert('Error: Amount exceeds population');
             return;
         }
         if (typeof window.ethereum !== 'undefined') {
@@ -204,12 +204,14 @@
                 };
                 await ethereum.request({method: 'eth_sendTransaction', params: [transactionParameters]});
                 console.log('Transaction successful');
+                alert('Purchased ' + batch + ' eggs successfully');
             } catch (error) {
-                console.error('Error executing act function:', error);
+                console.error('Error executing batch:', error);
+                alert('Error: ' + error);
             }
         } else { 
-            console.error('MetaMask not detected'); 
-            alert('MetaMask not detected. Please install MetaMask and try again.');
+            console.error('No Ethereum-compatible browser extension detected'); 
+            alert('Error: No Ethereum-compatible browser extension detected. Please install one and try again.');
         }
     }
 
@@ -246,18 +248,23 @@
     }
 
     //mask
-    async function mask() { 
-        if (typeof window.ethereum !== 'undefined') { 
-            try { 
-                await ethereum.request({ method: 'eth_requestAccounts' }); 
-                web3.eth.defaultAccount = (await web3.eth.getAccounts())[0]; 
-                console.log('MetaMask connected'); 
-            } catch (error) { 
-                console.error('User denied account access'); 
-        } } else { 
-            console.error('MetaMask not detected'); 
-            alert('MetaMask not detected. Please install MetaMask and try again.');
-        } 
+    async function mask() {
+        if (typeof window.ethereum !== 'undefined' || typeof window.web3 !== 'undefined') {
+            const provider = window.ethereum || window.web3.currentProvider;
+            window.web3 = new Web3(provider);
+            try {
+                await ethereum.request({ method: 'eth_requestAccounts' });
+                web3.eth.defaultAccount = (await web3.eth.getAccounts())[0];
+                console.log('Wallet connected');
+                alert('Wallet connected successfully');
+            } catch (error) {
+                console.error('User denied account access');
+                alert('Error: User denied account access');
+            }
+        } else {
+            console.error('No Ethereum-compatible browser extension detected');
+            alert('Error: No Ethereum-compatible browser extension detected. Please install one and try again.');
+        }
     }
 
     document.getElementById('refresh').addEventListener('click', build);
