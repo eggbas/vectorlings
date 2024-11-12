@@ -188,6 +188,7 @@
 
     //buy
     async function buy() {
+        let ss = "";
         const batch = parseInt(document.getElementById('batch').value);
         if (batch > pop && batch > 1) {
             alert('Error: Amount exceeds population');
@@ -204,7 +205,8 @@
                 };
                 await ethereum.request({method: 'eth_sendTransaction', params: [transactionParameters]});
                 console.log('Transaction successful');
-                if (batch == 1) {alert('Purchased 1 egg successfully. \nCheck your wallet to see what you hatched!');} else {alert('Purchased ' + batch + ' eggs successfully. \nCheck your wallet to see what you hatched!');}
+                if (batch != 1) {ss = "s";}
+                alert('Purchase of ' + batch + ' egg' + ss + ' initiated successfully. \nCheck your wallet to see what you hatched!');
             } catch (error) {
                 console.error('Error executing batch:', error);
                 alert('Error: ' + error);
