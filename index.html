@@ -204,7 +204,7 @@
                 };
                 await ethereum.request({method: 'eth_sendTransaction', params: [transactionParameters]});
                 console.log('Transaction successful');
-                if (batch == 1) {alert('Purchased 1 egg successfully.');} else {alert('Purchased ' + batch + ' eggs successfully.');}
+                if (batch == 1) {alert('Purchased 1 egg successfully. \nCheck your wallet to see what you hatched!');} else {alert('Purchased ' + batch + ' eggs successfully. \nCheck your wallet to see what you hatched!');}
             } catch (error) {
                 console.error('Error executing batch:', error);
                 alert('Error: ' + error);
