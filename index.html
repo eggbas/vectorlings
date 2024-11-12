@@ -204,9 +204,10 @@
                 };
                 await ethereum.request({method: 'eth_sendTransaction', params: [transactionParameters]});
                 console.log('Transaction successful');
-                if (batch = 1) {alert('Purchased 1 egg successfully.');} else {alert('Purchased ' + batch + ' eggs successfully.');}
+                if (batch == 1) {alert('Purchased 1 egg successfully.');} else {alert('Purchased ' + batch + ' eggs successfully.');}
             } catch (error) {
                 console.error('Error executing batch:', error);
+                alert('Error: ' + error);
             }
         } else { 
             console.error('No Ethereum-compatible browser extension detected'); 
