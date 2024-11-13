@@ -72,12 +72,9 @@
         <h1>Contract: <span id="contract"></span></h1>
     </div>
     <div class="header-info">
-        <div id="v"></div>
-        <div id="z"></div>
         <div id="q"></div>
-        <div id="t"></div>
-        <div id="life"></div>
         <div id="pop"></div>
+        <div id="life"></div>
         <div id="message-box"></div>
     </div>
     <div class="header-controls">
@@ -145,12 +142,9 @@
         dep = b.s[0];
         pop = b.p.length - q;
         document.getElementById('contract').innerText = n;
-        document.getElementById('v').innerText = `v (vitality): ${pace(v)}`;
-        document.getElementById('z').innerText = `z (lower bound): ${z}`;
-        document.getElementById('q').innerText = `q (current queue): ${q}`;
-        document.getElementById('t').innerText = `t (current timestamp): ${t}`;
-        document.getElementById('life').innerText = `lifespan: ${pace(t - dep)}`;
-        document.getElementById('pop').innerText = `population: ${pop}`;
+        document.getElementById('q').innerText = `Current Queue: ${q}`;
+        document.getElementById('pop').innerText = `Population: ${pop}`;
+        document.getElementById('life').innerText = `Lifespan: ${pace(t - dep)}`;
         const tableBody = document.getElementById('dataBody');
         tableBody.innerHTML = '';
         ceiling = Math.min(b.p.length - 1, 1048576);
@@ -221,8 +215,7 @@
     async function tick() {
         const t = Math.floor(Date.now() / 1000);
         const tableBody = document.getElementById('dataBody');
-        document.getElementById('t').innerText = `t (current timestamp): ${t}`;
-        document.getElementById('life').innerText = `lifespan: ${pace(t - dep)}`;
+        document.getElementById('life').innerText = `Lifespan: ${pace(t - dep)}`;
         for (let i = ceiling; i > floor; i--) {
             u = t - b.s[i];
             if (u < v && b.r[i] == 2) {
