@@ -75,6 +75,7 @@
         <div id="q"></div>
         <div id="pop"></div>
         <div id="life"></div>
+        <div id="price"></div>
         <div id="message-box"></div>
     </div>
     <div class="header-controls">
@@ -145,6 +146,7 @@
         document.getElementById('q').innerText = `Current Queue: ${q}`;
         document.getElementById('pop').innerText = `Population: ${pop}`;
         document.getElementById('life').innerText = `Lifespan: ${pace(t - dep)}`;
+        document.getElementById('price').innerText = `1 Egg = 1 POL`;
         const tableBody = document.getElementById('dataBody');
         tableBody.innerHTML = '';
         ceiling = Math.min(b.p.length - 1, 1048576);
