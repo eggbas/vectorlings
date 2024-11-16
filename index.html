@@ -85,6 +85,7 @@
     <div class="image"> <a href="https://opensea.io/collection/vectorling" target="_blank"><img src="./vectorlinglogo.png" alt="Vectorling Logo"></a></div>
     <div class="header-info">
         <div id="q"></div>
+        <div id="mod"></div>
         <div id="pop"></div>
         <div id="life"></div>
         <div id="price"></div>
@@ -156,6 +157,7 @@
         pop = b.p.length - q;
         document.getElementById('contract').innerText = n;
         document.getElementById('q').innerText = `Current queue: egg #${q}`;
+        document.getElementById('mod').innerText = `Queue modulus: mod ${b.m[q]}`;
         document.getElementById('pop').innerText = `Population: ${pop} eggs`;
         document.getElementById('life').innerText = `Lifespan: ${pace(t - dep)}`;
         document.getElementById('price').innerText = `1 Egg = 1 POL`;
