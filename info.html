@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vectorlings Info</title>
+    <link rel="icon" type="image/png" href="./i.png">
+    <style>
+        body {
+            font-family: Courier, sans-serif;
+            background: #222222;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #eee888;
+            border: 8px solid #eeee00;
+        }
+        h1 {
+            color: #222222;
+            text-align: center;
+            font-family: 'Courier', 'courier';
+        }
+        h2 {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #eeee00;
+        }
+        pre {
+            background-color: #333333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        a {
+            color: #eee888;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vectorlings</h1>
+        <pre id="content">Fetching content...</pre>
+    </div>
+    <script>
+        async function fetchText() {
+            try {
+                const response = await fetch('https://ipfs.io/ipfs/QmYo1xrvSBJ224TgjwQXL9q7wZouoRNaZy8WWcc1BWQPjr/chickenscratch-vec.txt');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                const text = await response.text();
+                document.getElementById('content').innerHTML = formatText(text);
+            } catch (error) {
+                document.getElementById('content').textContent = 'Failed to fetch content: ' + error.message;
+            }
+        }
+
+        function formatText(text) {
+            const urlPattern = /(https?:\/\/[^\s]+)/g;
+            const headerPattern = /-=-\s*(.+)/g;
+            text = text.replace(headerPattern, match => {
+                const content = match.replace(/-=-\s*/, '');
+                if (urlPattern.test(content)) {
+                    return content.replace(urlPattern, '<br><a href="$&" target="_blank">$&</a><br><br>');
+                } else {
+                    return `<br><h2>${content}</h2>`;
+                }
+            });
+            return text;
+        }
+
+
+        fetchText();
+    </script>
+</body>
+</html>
