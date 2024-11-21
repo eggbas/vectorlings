@@ -9,7 +9,7 @@
         body {
             background-color: #222222;
             color: #eeeeee;
-            font-family: Arial, sans-serif;
+            font-family: Courier, sans-serif;
         }
         header {
             display: flex;
@@ -19,6 +19,7 @@
             padding: 10px;
             border-radius: 5px;
             background-color: #333333;
+            flex-wrap: wrap;
         }
         .header-controls { 
             display: flex; 
@@ -76,6 +77,39 @@
             max-height: 100%;
             display: block;
         }
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                height: auto;
+                text-align: center;
+            }
+            .header-controls {
+                flex-direction: row;
+                justify-content: center;
+            }
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+            header button, input[type="number"] {
+                width: 100%;
+                max-width: 200px;
+                margin: 5px 0;
+            }
+        }
+        @media (max-width: 480px) {
+            .image {
+                width: 100px;
+                height: 100px;
+            }
+            table {
+                font-size: 12px;
+            }
+            th, td {
+                padding: 4px;
+            }
+        }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.5.2/web3.min.js"></script>
 </head>
@@ -93,7 +127,7 @@
     </div>
     <div class="header-controls">
         <div class="button-group">
-            <button id="connect" style="height: 45px; background-color: #222222; color: #eeeeee;"> 🦊 Connect Wallet </button> 
+            <button id="connect" style="height: 45px; background-color: #222222; color: #eeeeee;"> ❏ Connect Wallet </button> 
             <button id="refresh" style="height: 45px; background-color: #222222; color: #eeeeee;"> ↻ Refresh Data </button>
         </div>
         <div class="button-group">
@@ -125,7 +159,7 @@
     const web3 = new Web3(new Web3.providers.HttpProvider('https://polygon-mainnet.infura.io/v3/277cd3da7a8c4a68a608c6a7616c71f0'));
     const contract = new web3.eth.Contract(contractABI, contractAddress);
     var link = document.createElement("a");
-    link.href = "https://ipfs.io/ipfs/QmdV5495Ji78b3LfVGhbvvP8eBidi8tbVPvA9itcdvX6MK/chickenscratch-7.txt";
+    link.href = "https://eggbas.github.io/ebx/info";
     link.textContent = "Click here to learn more";
     link.target = "_blank";
     link.style.fontWeight = "bold";
